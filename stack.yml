@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+
+  ghost:
+    image: ghost:4-alpine
+    restart: always
+    ports:
+      - 8080:2368
+    depends_on:
+      - db
+    volumes:
+      - "$PWD/sccc-theme:/var/lib/ghost/content/themes/sccc-theme"
+    environment:
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: ${MYSQL_USER}
+      database__connection__password: ${MYSQL_PASSWORD}
+      database__connection__database: ${MYSQL_DATABASE}
+      url: http://localhost:8080
+
+  db:
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - "$PWD/sccc-mysql-data:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
