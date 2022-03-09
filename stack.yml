@@ -4,9 +4,10 @@ services:
 
   ghost:
     image: ghost:4-alpine
+    container_name: ghost
     restart: always
     ports:
-      - 8080:2368
+      - 2368:2368
     depends_on:
       - db
     volumes:
@@ -21,6 +22,7 @@ services:
 
   db:
     image: mysql:5.7
+    container_name: db
     restart: always
     volumes:
       - "$PWD/sccc-mysql-data:/var/lib/mysql"
