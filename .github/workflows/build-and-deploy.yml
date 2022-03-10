@@ -26,12 +26,8 @@ jobs:
         uses: actions/setup-node@v3.0.0
         with:
           node-version: '14.x'          
-      - name: Install npm dependencies
-        run: cd sccc-theme && npm install
-      - name: Test Theme
-        run: npm run test:ci
-      - name: Zip Theme
-        run: npm run zip
+      - name: Install npm dependencies, test and zip theme
+        run: cd sccc-theme && npm install && npm run test:ci && npm run zip
       
       - name: Copy Theme to Server
         uses: easingthemes/ssh-deploy@main
