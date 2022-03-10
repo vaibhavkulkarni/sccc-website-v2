@@ -37,4 +37,5 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: ${{ secrets.SOURCE }}
           target: ${{ secrets.REMOTE_TARGET }}
-          strip_components: 2
+          rm: true
+          overwrite: true
