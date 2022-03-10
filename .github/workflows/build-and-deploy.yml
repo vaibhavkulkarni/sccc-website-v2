@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: '14.x'          
       - name: Install npm dependencies
-        run: cd sccc-theme && npm install && 
+        run: cd sccc-theme && npm install
       - name: Test Theme
         run: npm run test:ci
       - name: Zip Theme
