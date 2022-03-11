@@ -34,7 +34,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: ${{ secrets.SOURCE }}
           target: ${{ secrets.REMOTE_TARGET }}
-          rm: true
           overwrite: true
 
   deploy-artifacts:
