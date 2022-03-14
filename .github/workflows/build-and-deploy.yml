@@ -49,8 +49,9 @@ jobs:
          source: ${{ secrets.SOURCE }}
          script: |
            cd ${{ secrets.REMOTE_TARGET }}
-           unzip sccc-theme/dist/sccc-theme.zip -d sccc-theme/
-           rm -r sccc-theme/dist
            docker-compose -f stack.yml down
            docker system prune -f
+           mkdir -p sccc-content
+           unzip sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
+           rm -r sccc-theme
            docker-compose -f stack.yml up -d
