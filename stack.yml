@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     volumes:
-      - "$PWD/sccc-theme:/var/lib/ghost/content/"
+      - "$PWD/sccc-content:/var/lib/ghost/content/"
     environment:
       database__client: mysql
       database__connection__host: db
