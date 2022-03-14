@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     volumes:
-      - "$PWD/sccc-theme:/var/lib/ghost/content/themes/sccc-theme"
+      - "$PWD/sccc-theme:/var/lib/ghost/content/"
     environment:
       database__client: mysql
       database__connection__host: db
@@ -21,7 +21,7 @@ services:
       url: http://localhost:2368
 
   db:
-    image: mysql:5.7
+    image: mysql:8.0
     container_name: db
     restart: always
     volumes:
