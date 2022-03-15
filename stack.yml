@@ -18,7 +18,7 @@ services:
       database__connection__user: ${MYSQL_USER}
       database__connection__password: ${MYSQL_PASSWORD}
       database__connection__database: ${MYSQL_DATABASE}
-      url: http://localhost:2368
+      url: https://www.suttonchallengers.org
 
   db:
     image: mysql:8.0
