@@ -53,6 +53,6 @@ jobs:
            docker system prune -f
            mkdir -p sccc-content/
            mkdir -p sccc-content/themes
-           unzip sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
+           unzip -o sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
            rm -r sccc-theme
            docker-compose -f stack.yml up -d
