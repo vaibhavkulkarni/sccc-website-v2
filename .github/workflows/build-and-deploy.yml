@@ -22,7 +22,7 @@ jobs:
           node-version: '14.x'
       - name: Install npm dependencies, test and zip theme
         run: |
-          cd sccc-theme
+          cd sccc-content/themes
           npm install
           npm run test:ci
           npm run zip
@@ -54,5 +54,4 @@ jobs:
            mkdir -p sccc-content/
            mkdir -p sccc-content/themes
            unzip -o sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
-           rm -r sccc-theme
            docker-compose -f stack.yml up -d
