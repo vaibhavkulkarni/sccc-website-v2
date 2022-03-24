@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  
+  ghost:
+    environment:
+      url: http://localhost:2368
+
+  db:
+    ports:
+      - 3306:3306
