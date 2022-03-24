@@ -50,7 +50,7 @@ jobs:
          script: |
            cd ${{ secrets.REMOTE_TARGET }}
            docker-compose -f stack.yml down
-           docker system prune -f
+           docker system prune -af
            mkdir -p sccc-content/
            mkdir -p sccc-content/themes
            unzip -o sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
