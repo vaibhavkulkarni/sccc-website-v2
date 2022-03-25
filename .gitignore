@@ -33,3 +33,4 @@ changelog.md.bk
 .env
 *mysql*
 sccc-content/logs
+*.zip
