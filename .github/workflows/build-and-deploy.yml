@@ -55,7 +55,6 @@ jobs:
            mkdir -p backup_logs
            cp -r sccc-content/logs/* backup_logs/.
            rm -rf sccc-content
-           unzip sccc-content.zip
-           unzip -o sccc-content/themes/sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
-           rm -r sccc-content/themes/sccc-theme/dist
+           unzip ${{ secrets.REMOTE_TARGET }}/sccc-content.zip
+           unzip -o ${{ secrets.REMOTE_TARGET }}/sccc-content/themes/sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
            docker-compose -f stack.yml up -d
