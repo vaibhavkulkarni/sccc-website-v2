@@ -22,6 +22,7 @@ jobs:
           node-version: '14.x'
       - name: Install npm dependencies, test and zip theme
         run: |
+          zip -r sccc-content.zip sccc-content -x sccc-content/data/**\* sccc-content/themes/**\* sccc-content/logs/**\*
           cd sccc-content/themes/sccc-theme
           npm install
           npm run test:ci
@@ -32,7 +33,7 @@ jobs:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: ${{ secrets.SOURCE }}
+          source: "sccc-content.zip,sccc-content/themes/sccc-theme/dist/sccc-theme.zip,stack.yml"
           target: ${{ secrets.REMOTE_TARGET }}
           overwrite: true
 
@@ -51,7 +52,10 @@ jobs:
            cd ${{ secrets.REMOTE_TARGET }}
            docker-compose -f stack.yml down
            docker system prune -af
-           mkdir -p sccc-content/
-           mkdir -p sccc-content/themes
+           mkdir -p backup_logs
+           cp -r sccc-content/logs/* backup_logs/.
+           rm -rf sccc-content
+           unzip sccc-content.zip
            unzip -o sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
+           rm -r sccc-theme
            docker-compose -f stack.yml up -d
