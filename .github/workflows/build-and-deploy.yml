@@ -22,6 +22,7 @@ jobs:
           node-version: '14.x'
       - name: Install npm dependencies, test and zip theme
         run: |
+          apt-get update && apt-get upgrade && apt-get install zip -y
           zip -r sccc-content.zip sccc-content -x sccc-content/data/**\* sccc-content/themes/**\* sccc-content/logs/**\*
           cd sccc-content/themes/sccc-theme
           npm install
@@ -34,8 +35,8 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: "sccc-content.zip,sccc-content/themes/sccc-theme/dist/sccc-theme.zip,stack.yml"
-          target: ${{ secrets.REMOTE_TARGET }}/new_deploy
-          overwrite: true
+          target: ${{ secrets.REMOTE_TARGET }}/new_deploy/
+          rm: true
 
   deploy-artifacts:
    runs-on: ubuntu-latest
@@ -47,15 +48,13 @@ jobs:
          host: ${{ secrets.REMOTE_HOST }}
          username: ${{ secrets.REMOTE_USER }}
          key: ${{ secrets.SERVER_SSH_KEY }}
-         source: ${{ secrets.SOURCE }}
          script: |
            cd ${{ secrets.REMOTE_TARGET }}
            docker-compose -f stack.yml down
            docker system prune -af
            mkdir -p backup_logs
            cp -r sccc-content/logs/* backup_logs/.
-           rm -rf sccc-content new_deploy stack.yml
-           mkdir -p new_deploy
+           rm -rf sccc-content stack.yml
            unzip ${{ secrets.REMOTE_TARGET }}/new_deploy/sccc-content.zip
            unzip -o ${{ secrets.REMOTE_TARGET }}/new_deploy/sccc-content/themes/sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
            cp ${{ secrets.REMOTE_TARGET }}/new_deploy/stack.yml .
