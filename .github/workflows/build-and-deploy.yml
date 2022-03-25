@@ -54,8 +54,9 @@ jobs:
            docker system prune -af
            mkdir -p backup_logs
            cp -r sccc-content/logs/* backup_logs/.
-           rm -rf sccc-content stack.yml
+           rm -rf sccc-content new_deploy stack.yml
+           mkdir -p new_deploy
            unzip ${{ secrets.REMOTE_TARGET }}/new_deploy/sccc-content.zip
            unzip -o ${{ secrets.REMOTE_TARGET }}/new_deploy/sccc-content/themes/sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
-           vp ${{ secrets.REMOTE_TARGET }}/new_deploy/stack.yml .
+           cp ${{ secrets.REMOTE_TARGET }}/new_deploy/stack.yml .
            docker-compose -f stack.yml up -d
