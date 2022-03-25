@@ -34,7 +34,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: "sccc-content.zip,sccc-content/themes/sccc-theme/dist/sccc-theme.zip,stack.yml"
-          target: ${{ secrets.REMOTE_TARGET }}
+          target: ${{ secrets.REMOTE_TARGET }}/new_deploy
           overwrite: true
 
   deploy-artifacts:
@@ -54,7 +54,8 @@ jobs:
            docker system prune -af
            mkdir -p backup_logs
            cp -r sccc-content/logs/* backup_logs/.
-           rm -rf sccc-content
-           unzip ${{ secrets.REMOTE_TARGET }}/sccc-content.zip
-           unzip -o ${{ secrets.REMOTE_TARGET }}/sccc-content/themes/sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
+           rm -rf sccc-content stack.yml
+           unzip ${{ secrets.REMOTE_TARGET }}/new_deploy/sccc-content.zip
+           unzip -o ${{ secrets.REMOTE_TARGET }}/new_deploy/sccc-content/themes/sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
+           vp ${{ secrets.REMOTE_TARGET }}/new_deploy/stack.yml .
            docker-compose -f stack.yml up -d
