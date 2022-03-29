@@ -35,3 +35,6 @@ changelog.md.bk
 sccc-content/logs
 *.zip
 *secrets*
+sccc-content/data
+**/casper
+**/sccc-theme/assets/built/main.min.js

@@ -1,7 +1,30 @@
 {{#unless isSecondary}}
-    {{#foreach navigation}}
-        <a class="menu-item menu-item-{{slug}}{{#if current}} menu-item-current{{/if}}" href="{{url absolute="true"}}">{{label}}</a>
-    {{/foreach}}
+    {{!-- {{#foreach navigation}} --}}
+    <ul class="nav sf-menu clearfix">
+        <li class="active sub-menu"><a href="index.html">home<em></em></a><i></i><span></span>
+            <ul class="submenu">
+                <li><a href="#">what we do</a><span></span>
+                    <ul class="submenu">
+                        <li><a href="#">what we do</a></li>
+                        <li><a href="#">fresh links</a></li>
+                        <li><a href="#">events</a></li>
+                        <li><a href="#">archives</a></li>
+                        <li><a href="#">forum</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">fresh links</a></li>
+                <li><a href="#">events</a></li>
+                <li><a href="#">archives</a></li>
+                <li><a href="#">forum</a></li>
+            </ul>
+        </li>
+        <li><a href="index-1.html">about<em></em></a><i></i></li>
+        <li><a href="index-2.html">TEAM<em></em></a><i></i></li>
+        <li><a href="index-3.html">news & events<em></em></a><i></i></li>
+        <li><a href="index-4.html">CONTACTS<em></em></a><i></i></li>
+    </ul>
+
+    {{!-- {{/foreach}} --}}
 {{else}}
     {{#foreach navigation}}
         <a class="menu-item menu-item-{{slug}}{{#if current}} menu-item-current{{/if}}" href="{{url absolute="true"}}">{{label}}</a>

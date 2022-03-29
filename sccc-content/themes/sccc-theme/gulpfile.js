@@ -52,7 +52,8 @@ function js(done) {
     pump([
         src([
             'assets/js/lib/*.js',
-            'assets/js/main.js'
+            'assets/js/main.js',
+            'node_modules/bootstrap/dist/js/bootstrap.min.js'
         ], {sourcemaps: true}),
         concat('main.min.js'),
         uglify(),
@@ -67,6 +68,7 @@ function zipper(done) {
     pump([
         src([
             '**',
+            'node_modules/bootstrap/dist/**',
             '!node_modules', '!node_modules/**',
             '!dist', '!dist/**',
             '!yarn-error.log'
