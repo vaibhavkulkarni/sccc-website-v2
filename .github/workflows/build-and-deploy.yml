@@ -33,7 +33,7 @@ jobs:
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
-          password: ${{ secrets.PASSWORD }}
+          passphrase: ${{ secrets.PASSWORD }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: "sccc-content.zip,sccc-content/themes/sccc-theme/dist/sccc-theme.zip,stack.yml"
           target: ${{ secrets.REMOTE_TARGET }}/new_deploy/
@@ -48,6 +48,7 @@ jobs:
        with:
          host: ${{ secrets.REMOTE_HOST }}
          username: ${{ secrets.REMOTE_USER }}
+         passphrase: ${{ secrets.PASSWORD }}
          key: ${{ secrets.SERVER_SSH_KEY }}
          script: |
            cd ${{ secrets.REMOTE_TARGET }}
