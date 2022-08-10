@@ -51,7 +51,7 @@ jobs:
          key: ${{ secrets.SERVER_SSH_KEY }}
          script: |
            cd ${{ secrets.REMOTE_TARGET }}
-           docker-compose -f stack.yml down
+           docker compose -f stack.yml down
            docker system prune -af
            mkdir -p backup_logs
            cp -r sccc-content/logs/* backup_logs/.
