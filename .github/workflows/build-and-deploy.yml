@@ -57,6 +57,6 @@ jobs:
            cp -r sccc-content/logs/* backup_logs/.
            rm -rf sccc-content stack.yml
            unzip ${{ secrets.REMOTE_TARGET }}/new_deploy/sccc-content.zip
-           unzip -o ${{ secrets.REMOTE_TARGET }}/new_deploy/sccc-content/themes/sccc-theme/dist/sccc-theme.zip -d sccc-content/themes/sccc-theme
+           unzip -o ${{ secrets.REMOTE_TARGET }}/new_deploy/sccc-content/themes/sccc-theme/dist/sccc-theme.zip -d ${{ secrets.REMOTE_TARGET }}/sccc-content/themes/sccc-theme
            cp ${{ secrets.REMOTE_TARGET }}/new_deploy/stack.yml .
            docker compose -f stack.yml up -d
