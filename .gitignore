@@ -37,4 +37,5 @@ sccc-content/logs
 *secrets*
 sccc-content/data
 **/casper
+**/sccc-theme/assets/built
 **/sccc-theme/assets/built/main.min.js

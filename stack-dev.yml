@@ -5,6 +5,9 @@ services:
   ghost:
     environment:
       url: http://localhost:2368
+      NODE_ENV: development
+    depends_on:
+      - "db"
 
   db:
     ports:
