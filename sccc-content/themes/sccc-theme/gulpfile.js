@@ -51,6 +51,15 @@ function css(done) {
     ], handleError(done));
 }
 
+function font(done) {
+    pump([
+        src('assets/font/*'),
+        uglify(),
+        dest('assets/built/'),
+        livereload()
+    ], handleError(done));
+}
+
 function js(done) {
     pump([
         src('assets/js/*.js', {sourcemaps: true}),
@@ -79,7 +88,7 @@ function zipper(done) {
 const cssWatcher = () => watch('assets/css/**', css);
 const hbsWatcher = () => watch(['*.hbs', '**/**/*.hbs', '!node_modules/**/*.hbs'], hbs);
 const watcher = parallel(cssWatcher, hbsWatcher);
-const build = series(css, js);
+const build = series(css, font, js);
 const dev = series(build, serve, watcher);
 
 exports.build = build;
