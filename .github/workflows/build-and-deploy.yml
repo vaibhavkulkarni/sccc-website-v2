@@ -17,12 +17,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Build deployment artifacts
-        uses: actions/setup-node@v2.5.1
+        uses: actions/setup-node@v3.6.0
         with:
           node-version: '14.x'
       - name: Install npm dependencies, test and zip theme
         run: |
-          apt-get update && apt-get upgrade && apt-get install zip -y
           zip -r sccc-content.zip sccc-content -x sccc-content/data/**\* sccc-content/themes/**\* sccc-content/logs/**\*
           cd sccc-content/themes/sccc-theme
           npm install
