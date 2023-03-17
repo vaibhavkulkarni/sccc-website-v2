@@ -19,7 +19,7 @@ jobs:
       - name: Build deployment artifacts
         uses: actions/setup-node@v3.6.0
         with:
-          node-version: '14.x'
+          node-version: '16.x'
       - name: Install npm dependencies, test and zip theme
         run: |
           zip -r sccc-content.zip sccc-content -x sccc-content/data/**\* sccc-content/themes/**\* sccc-content/logs/**\*
