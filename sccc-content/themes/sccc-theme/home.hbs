@@ -6,42 +6,26 @@
       <div class="camera_wrap">
         <div data-src="{{asset "img/picture1.jpg"}}">
           <div class="camera-caption fadeIn">
-            <p class="title">
-              Cricket a gentleman's game
-            </p>
-            <p class="description">
-              Cricket a gentleman's game
-            </p>
+            <p class="title"> Cricket a gentleman's game </p>
+            <p class="description"> Cricket a gentleman's game </p>
           </div>
         </div>
         <div data-src="{{asset "img/picture2.jpg"}}">
           <div class="camera-caption fadeIn">
-            <p class="title">
-              Play hard but party harder
-            </p>
-            <p class="description">
-              Play hard but party harder
-            </p>
+            <p class="title"> Play hard but party harder </p>
+            <p class="description"> Play hard but party harder </p>
           </div>
         </div>
         <div data-src="{{asset "img/picture3.jpg"}}">
           <div class="camera-caption fadeIn">
-            <p class="title">
-              Catches win matches!
-            </p>
-            <p class="description">
-              Catches win matches!
-            </p>
+            <p class="title"> Catches win matches! </p>
+            <p class="description"> Catches win matches! </p>
           </div>
         </div>
         <div data-src="{{asset "img/picture4.jpg"}}">
           <div class="camera-caption fadeIn">
-            <p class="title">
-              Nice glance that!
-            </p>
-            <p class="description">
-              Or was it a close call?
-            </p>
+            <p class="title"> Nice glance that! </p>
+            <p class="description"> Or was it a close call? </p>
           </div>
         </div>
       </div>
@@ -51,35 +35,14 @@
     <div class="row">
       <div class="col-lg-12 col-md-6 col-sm-6">
         <div class="box box1">
-          <p class="title">
-            club schedule
-          </p>
-          <p class="description">
-            View all fixtures for
-            <br />
-            {{date format="YYYY"}}
-            <br />
-            <br />
-          </p>
-          <a
-            href="https://suttonchallengers.play-cricket.com/Matches?tab=Fixture"
-            target="_blank"
-          ></a>
+          <p class="title"> club schedule </p>
+          <p class="description"> View all fixtures for <br /> {{date format="YYYY"}} <br /> <br /> </p> <a href="https://suttonchallengers.play-cricket.com/Matches?tab=Fixture" target="_blank"></a>
         </div>
       </div>
       <div class="col-lg-12 col-md-6 col-sm-6">
         <div class="box box2">
-          <p class="title">
-            Join us today!
-          </p>
-          <p class="description">
-            And be part of a
-            <br />
-            community working
-            <br />
-            at the grass roots!
-          </p>
-          <a href="#"></a>
+          <p class="title"> Join us today! </p>
+          <p class="description"> And be part of a <br /> community working <br /> at the grass roots! </p> <a href="#"></a>
         </div>
       </div>
     </div>
@@ -88,58 +51,23 @@
     <div class="row">
       <div class="news-box">
         <div class="col-lg-12">
-          <h4>
-            <br/>
-            Club news
-          </h4>
-          <div class="row">
-            {{#foreach posts limit="4"}}
-              {{#match primary_tag.name "News"}}
-                {{> "news"}}
-              {{/match}}
-            {{/foreach}}
-          </div>
+          <h4> <br /> Club news </h4>
+          <div class="row"> {{#foreach posts limit="4"}} {{#match primary_tag.name "News"}} {{> "news"}} {{/match}} {{/foreach}} </div>
         </div>
       </div>
       <div class="clearfix topic-box">
         <div class="col-lg-6 col-md-6 col-sm-6">
-          <h4>
-            Achievements
-          </h4>
-          <ul class="list2">
-            {{#foreach posts limit="4"}}
-                {{#match primary_tag.name "Achievements"}}
-                    {{> "achievements"}}
-                {{/match}}
-            {{/foreach}}
-          </ul>
-          <a href="#" class="btn-default btn1">
-            view all
-            <span class="fa fa-angle-right"></span>
-          </a>
+          <h4> Achievements </h4>
+          <ul class="list2"> {{#foreach posts limit="4"}} {{#match primary_tag.name "Achievements"}} {{> "achievements"}} {{/match}} {{/foreach}} </ul> <a href="#" class="btn-default btn1"> view all <span class="fa fa-angle-right"></span> </a>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6">
-          <h4>
-            Recent successes
-          </h4>
+          <h4> Recent successes </h4>
           <div class="thumb-pad2">
-            <div class="thumbnail">
-              {{#foreach posts limit="4"}}
-                  {{#match primary_tag.name "Successes"}}
-                      {{> "successes"}}
-                  {{/match}}
-              {{/foreach}}
-            </div>
-          </div>
-          <a href="#" class="btn-default btn1">
-            view all
-            <span class="fa fa-angle-right"></span>
-          </a>
+            <div class="thumbnail"> {{#foreach posts limit="4"}} {{#match primary_tag.name "Successes"}} {{> "successes"}} {{/match}} {{/foreach}} </div>
+          </div> <a href="#" class="btn-default btn1"> view all <span class="fa fa-angle-right"></span> </a>
         </div>
       </div>
-      <div class="col-lg-12 border-box">
-        {{> "sponsors"}}
-      </div>
+      <div class="col-lg-12 border-box"> {{> "sponsors"}} </div>
     </div>
   </div>
 </div>

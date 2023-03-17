@@ -2,96 +2,85 @@
 <html lang="{{@site.locale}}">
 
 <head>
-    <title>{{meta_title}}</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{asset "built/bootstrap.min.css"}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset "built/bootstrap-theme.min.css"}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset "built/style.css"}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset "built/camera.css"}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset "built/font-awesome.css"}}" />
-    <script src="{{asset "built/jquery.js"}}"></script>
-    <script src="{{asset "built/jquery-migrate-1.2.1.min.js"}}"></script>
-    <script src="{{asset "built/superfish.js"}}"></script>
-    <script src="{{asset "built/jquery.easing.1.3.js"}}"></script>
-    <script src="{{asset "built/jquery.mobilemenu.js"}}"></script>
-    <script src="{{asset "built/jquery.ui.totop.js"}}"></script>
-    <script src="{{asset "built/jquery.equalheights.js"}}"></script>
-    <script src="{{asset "built/camera.js"}}"></script>
-    <script src="{{asset "built/bootstrap.min.js"}}"></script>
-    <script src="{{asset "built/tm-scripts.js"}}"></script>
-    <script src="{{asset "built/jquery.mobile.customized.min.js"}}"></script>
-    <script>
-        $(document).ready(function () {
-            jQuery(".camera_wrap").camera();
-        });
-    </script> {{ghost_head}}
+  <title>{{meta_title}}</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{{asset "built/bootstrap.min.css"}}" />
+  <link rel="stylesheet" type="text/css" href="{{asset "built/bootstrap-theme.min.css"}}" />
+  <link rel="stylesheet" type="text/css" href="{{asset "built/style.css"}}" />
+  <link rel="stylesheet" type="text/css" href="{{asset "built/camera.css"}}" />
+  <link rel="stylesheet" type="text/css" href="{{asset "built/font-awesome.css"}}" />
+  <script src="{{asset "built/jquery.js"}}"></script>
+  <script src="{{asset "built/jquery-migrate-1.2.1.min.js"}}"></script>
+  <script src="{{asset "built/superfish.js"}}"></script>
+  <script src="{{asset "built/jquery.easing.1.3.js"}}"></script>
+  <script src="{{asset "built/jquery.mobilemenu.js"}}"></script>
+  <script src="{{asset "built/jquery.ui.totop.js"}}"></script>
+  <script src="{{asset "built/jquery.equalheights.js"}}"></script>
+  <script src="{{asset "built/camera.js"}}"></script>
+  <script src="{{asset "built/bootstrap.min.js"}}"></script>
+  <script src="{{asset "built/tm-scripts.js"}}"></script>
+  <script src="{{asset "built/jquery.mobile.customized.min.js"}}"></script>
+  <script>
+    $(document).ready(function () {
+        jQuery(".camera_wrap").camera();
+    });
+  </script> {{ghost_head}}
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <h1 class="navbar-brand navbar-brand_"> 
-              <a href="{{@site.url}}"> 
-              {{#if @site.logo}} 
-                <img src="{{@site.logo}}" alt="{{@site.title}}" /> 
-              {{else}} 
-                {{@site.title}} 
-               {{/if}} 
-            </h1>
-            <ul class="follow_icon">
-                <li><a href="{{facebook_url @site.facebook}}" target="_blank" class="fa fa-facebook"></a></li>
-                <li><a href="{{twitter_url @site.twitter}}" target="_blank" class="fa fa-twitter"></a></li>
-                <li><a href="https://www.instagram.com/suttonchallengers/" target="_blank" class="fa fa-instagram"></a></li>
-                <li><a href="/rss" target="_blank" class="fa fa-rss"></a></li>
-            </ul>
-            <div class="clearfix"></div>
-            <nav class="navbar navbar-default navbar-static-top tm_navbar clearfix" role="navigation">
-                <ul class="nav sf-menu clearfix">
-                    <li> <a href="/">Home<em></em></a><i></i> </li>
-                    <li> <a href="/about">about<em></em></a><i></i> </li>
-                    <li> <a href="index-3.html">news & events<em></em></a><i></i> </li>
-                    <li> <a href="index-4.html">CONTACTS<em></em></a><i></i> </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main>
-      <div class="container">
-        {{{body}}}
+  <header>
+    <div class="container">
+      <h1 class="navbar-brand navbar-brand_"> <a href="{{@site.url}}"> {{#if @site.logo}} <img src="{{@site.logo}}" alt="{{@site.title}}" /> {{else}} {{@site.title}} {{/if}} </h1>
+      <ul class="follow_icon">
+        <li><a href="{{facebook_url @site.facebook}}" target="_blank" class="fa fa-facebook"></a></li>
+        <li><a href="{{twitter_url @site.twitter}}" target="_blank" class="fa fa-twitter"></a></li>
+        <li><a href="https://www.instagram.com/suttonchallengers/" target="_blank" class="fa fa-instagram"></a></li>
+        <li><a href="/rss" target="_blank" class="fa fa-rss"></a></li>
+      </ul>
+      <div class="clearfix"></div>
+      <nav class="navbar navbar-default navbar-static-top tm_navbar clearfix" role="navigation">
+        <ul class="nav sf-menu clearfix">
+          <li> <a href="/">Home<em></em></a><i></i> </li>
+          <li> <a href="/about">about<em></em></a><i></i> </li>
+          <li> <a href="index-3.html">news & events<em></em></a><i></i> </li>
+          <li> <a href="index-4.html">CONTACTS<em></em></a><i></i> </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container"> {{{body}}} </div>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="col-lg-5 col-md-12 col-sm-12">
+        <p class="title">Sutton Challengers Cricket Club</p>
+        <p class="priv">Copyright &copy; <em id="copyright-year"></em> | <a href="#">Privacy policy</a></p>
       </div>
-    </main>
-    <footer>
-      <div class="container">
-        <div class="col-lg-5 col-md-12 col-sm-12">
-          <p class="title">Sutton Challengers Cricket Club</p>
-          <p class="priv">Copyright &copy; <em id="copyright-year"></em> | <a href="#">Privacy policy</a></p>
-        </div>
-        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
-          <h3>Useful info</h3>
-          <ul class="list3">
-            <li><a href="#">Contact Information</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
-          <h3>Stats archive</h3>
-          <ul class="list3">
-            <li><a href="https://suttonchallengers.play-cricket.com/Statistics?season=255&sub_tab=Standard&tab=Batting#" target="_blank">Batting</a></li>
-            <li><a href="https://suttonchallengers.play-cricket.com/Statistics?season=255&sub_tab=Standard&tab=Bowling" target="_blank">Bowling</a></li>
-            <li><a href="https://suttonchallengers.play-cricket.com/Statistics?season=255&sub_tab=Standard&tab=Fielding" target="_blank">Fielding</a></li>
-            <li><a href="https://suttonchallengers.play-cricket.com/Statistics?season=255&tab=Team" target="_blank">Team</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
-          <h3>Contact info</h3>
-          <p>Address:<br /></p>
-          <p>E-mail: <a href="#">admin@suttonchallengers.net</a></p>
-        </div>
+      <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+        <h3>Useful info</h3>
+        <ul class="list3">
+          <li><a href="#">Contact Information</a></li>
+        </ul>
       </div>
-      <!-- {%FOOTER_LINK} -->
-    </footer>
-    {{ghost_foot}}
+      <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+        <h3>Stats archive</h3>
+        <ul class="list3">
+          <li><a href="https://suttonchallengers.play-cricket.com/Statistics?season=255&sub_tab=Standard&tab=Batting#" target="_blank">Batting</a></li>
+          <li><a href="https://suttonchallengers.play-cricket.com/Statistics?season=255&sub_tab=Standard&tab=Bowling" target="_blank">Bowling</a></li>
+          <li><a href="https://suttonchallengers.play-cricket.com/Statistics?season=255&sub_tab=Standard&tab=Fielding" target="_blank">Fielding</a></li>
+          <li><a href="https://suttonchallengers.play-cricket.com/Statistics?season=255&tab=Team" target="_blank">Team</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+        <h3>Contact info</h3>
+        <p>Address:<br /></p>
+        <p>E-mail: <a href="#">admin@suttonchallengers.net</a></p>
+      </div>
+    </div> <!-- {%FOOTER_LINK} -->
+  </footer> {{ghost_foot}}
 </body>
 
 </html>

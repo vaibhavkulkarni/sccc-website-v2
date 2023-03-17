@@ -1,95 +1,40 @@
-
-
-<head>
-    <title>{{meta_title}}</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{asset "built/bootstrap.min.css"}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset "built/bootstrap-theme.min.css"}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset "built/style.css"}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset "built/camera.css"}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset "built/font-awesome.css"}}" />
-    <script src="{{asset "built/jquery.js"}}"></script>
-    <script src="{{asset "built/jquery-migrate-1.2.1.min.js"}}"></script>
-    <script src="{{asset "built/superfish.js"}}"></script>
-    <script src="{{asset "built/jquery.easing.1.3.js"}}"></script>
-    <script src="{{asset "built/jquery.mobilemenu.js"}}"></script>
-    <script src="{{asset "built/jquery.ui.totop.js"}}"></script>
-    <script src="{{asset "built/jquery.equalheights.js"}}"></script>
-    <script src="{{asset "built/camera.js"}}"></script>
-    <script src="{{asset "built/bootstrap.min.js"}}"></script>
-    <script src="{{asset "built/tm-scripts.js"}}"></script>
-    <script src="{{asset "built/jquery.mobile.customized.min.js"}}"></script>
-    <script>
-        $(document).ready(function () {
-            jQuery(".camera_wrap").camera();
-        });
-    </script> {{ghost_head}}
-</head>
+{{!< default}}
 
 {{#post}}
-
-<article class="gh-article {{post_class}}">
-
-    <header class="gh-header gh-canvas">
-        <span class="gh-post-meta"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span class="bull">&bull;</span> {{reading_time}}</span>
-        <h1 class="gh-title">{{title}}</h1>
-
-        {{#if custom_excerpt}}
+  <article class="gh-article {{post_class}}">
+    <header class="gh-header gh-canvas"> <span class="gh-post-meta">
+      <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> 
+      <span class="bull">&bull;</span> {{reading_time}}</span>
+      <h1 class="gh-title">{{title}}</h1> {{#if custom_excerpt}}
         <p class="gh-excerpt">{{custom_excerpt}}</p>
-        {{/if}}
-
-        {{#if feature_image}}
-        <figure class="gh-feature-image">
-            <img
-                srcset="{{img_url feature_image size="s"}} 300w,
+      {{/if}} 
+      {{#if feature_image}}
+        <figure class="gh-feature-image"> <img srcset="{{img_url feature_image size="s"}} 300w,
                         {{img_url feature_image size="m"}} 600w,
                         {{img_url feature_image size="l"}} 1000w,
-                        {{img_url feature_image size="xl"}} 2000w"
-                sizes="(max-width: 1000px) 1000px, 2000px"
-                loading="lazy"
-                src="{{img_url feature_image size="xl"}}"
-                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-            />
-            {{#if feature_image_caption}}
-                <figcaption>{{feature_image_caption}}</figcaption>
-            {{/if}}
-        </figure>
-        {{/if}}
+                        {{img_url feature_image size="xl"}} 2000w" sizes="(max-width: 1000px) 1000px, 2000px" loading="lazy" src="{{img_url feature_image size="xl"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" /> {{#if feature_image_caption}}
+            <figcaption>{{feature_image_caption}}</figcaption>
+          {{/if}} </figure>
+      {{/if}}
     </header>
-
-    <div class="gh-content gh-canvas">
-        {{content}}
-    </div>
-
+    <div class="gh-content gh-canvas"> {{content}} </div>
     <footer class="gh-footer gh-canvas">
-
-        <div class="gh-post-authors">
-            Written by {{#foreach authors}}<a href="{{url}}">{{name}}</a>{{/foreach}}
-        </div>
-
-        {{!--
-        <section class="gh-post-comments">
+      <div class="gh-post-authors"> Written by {{#foreach authors}}<a href="{{url}}">{{name}}</a>{{/foreach}} </div> 
+        {{!-- <section class="gh-post-comments">
             If you want to embed comments, this is a good place to do it!
-        </section>
-        --}}
-
+        </section> --}}
     </footer>
-
-</article>
-
-<aside class="gh-readmore">
+  </article>
+  <aside class="gh-readmore">
     <div class="gh-readmore-inner gh-container">
-        <div class="gh-readmore-next">
-            {{#next_post}}<a href="{{url}}">{{> "icons/arrow-left"}} <h4>{{title}}</h4></a>{{/next_post}}
-        </div>
-        <div class="gh-readmore-prev">
-            {{#prev_post}}<a href="{{url}}">
-                <h4>{{title}}</h4> {{> "icons/arrow-right"}}
-            </a>{{/prev_post}}
-        </div>
+      <div class="gh-readmore-next"> 
+        {{#next_post}}<a href="{{url}}">{{> "icons/arrow-left"}}
+            <h4>{{title}}</h4>
+                </a>{{/next_post}}
+                 </div>
+      <div class="gh-readmore-prev"> {{#prev_post}}<a href="{{url}}">
+            <h4>{{title}}</h4> {{> "icons/arrow-right"}}
+          </a>{{/prev_post}} </div>
     </div>
-</aside>
-
+  </aside>
 {{/post}}
