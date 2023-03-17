@@ -11,6 +11,7 @@
   <link rel="stylesheet" type="text/css" href="{{asset "built/style.css"}}" />
   <link rel="stylesheet" type="text/css" href="{{asset "built/camera.css"}}" />
   <link rel="stylesheet" type="text/css" href="{{asset "built/font-awesome.css"}}" />
+  <link rel="stylesheet" type="text/css" href="{{asset "built/contact-form.css"}}" />
   <script src="{{asset "built/jquery.js"}}"></script>
   <script src="{{asset "built/jquery-migrate-1.2.1.min.js"}}"></script>
   <script src="{{asset "built/superfish.js"}}"></script>
@@ -32,7 +33,14 @@
 <body>
   <header>
     <div class="container">
-      <h1 class="navbar-brand navbar-brand_"> <a href="{{@site.url}}"> {{#if @site.logo}} <img src="{{@site.logo}}" alt="{{@site.title}}" /> {{else}} {{@site.title}} {{/if}} </h1>
+      <h1 class="navbar-brand navbar-brand_">
+         <a href="{{@site.url}}">
+           {{#if @site.logo}}
+            <img src="{{@site.logo}}" alt="{{@site.title}}" />
+           {{else}}
+            {{@site.title}}
+          {{/if}}
+      </h1>
       <ul class="follow_icon">
         <li><a href="{{facebook_url @site.facebook}}" target="_blank" class="fa fa-facebook"></a></li>
         <li><a href="{{twitter_url @site.twitter}}" target="_blank" class="fa fa-twitter"></a></li>
@@ -42,10 +50,11 @@
       <div class="clearfix"></div>
       <nav class="navbar navbar-default navbar-static-top tm_navbar clearfix" role="navigation">
         <ul class="nav sf-menu clearfix">
-          <li> <a href="/">Home<em></em></a><i></i> </li>
+          {{navigation}}
+          {{!-- <li> <a href="/">Home<em></em></a><i></i> </li>
           <li> <a href="/about">about<em></em></a><i></i> </li>
           <li> <a href="index-3.html">news & events<em></em></a><i></i> </li>
-          <li> <a href="index-4.html">CONTACTS<em></em></a><i></i> </li>
+          <li> <a href="index-4.html">CONTACTS<em></em></a><i></i> </li> --}}
         </ul>
       </nav>
     </div>
