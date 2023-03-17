@@ -32,7 +32,14 @@
 <body>
     <header>
         <div class="container">
-            <h1 class="navbar-brand navbar-brand_"> <a href="{{@site.url}}"> {{#if @site.logo}} <img src="{{@site.logo}}" alt="{{@site.title}}" /> {{else}} {{@site.title}} {{/if}} </h1>
+            <h1 class="navbar-brand navbar-brand_"> 
+              <a href="{{@site.url}}"> 
+              {{#if @site.logo}} 
+                <img src="{{@site.logo}}" alt="{{@site.title}}" /> 
+              {{else}} 
+                {{@site.title}} 
+               {{/if}} 
+            </h1>
             <ul class="follow_icon">
                 <li><a href="{{facebook_url @site.facebook}}" target="_blank" class="fa fa-facebook"></a></li>
                 <li><a href="{{twitter_url @site.twitter}}" target="_blank" class="fa fa-twitter"></a></li>
@@ -48,61 +55,12 @@
                     <li> <a href="index-4.html">CONTACTS<em></em></a><i></i> </li>
                 </ul>
             </nav>
-            <div class="clearfix"></div>
-            <div class="row">
-                <div class="col-lg-9 col-md-12 col-sm-12">
-                    <div class="slider">
-                        <div class="camera_wrap">
-                            <div data-src="{{asset "img/picture1.jpg"}}">
-                                <div class="camera-caption fadeIn">
-                                    <p class="title">Cricket a gentleman's game</p>
-                                    <p class="description">Cricket a gentleman's game</p>
-                                </div>
-                            </div>
-                            <div data-src="{{asset "img/picture2.jpg"}}">
-                                <div class="camera-caption fadeIn">
-                                    <p class="title">Play hard but party harder</p>
-                                    <p class="description">Play hard but party harder</p>
-                                </div>
-                            </div>
-                            <div data-src="{{asset "img/picture3.jpg"}}">
-                                <div class="camera-caption fadeIn">
-                                    <p class="title">Catches win matches!</p>
-                                    <p class="description">Catches win matches!</p>
-                                </div>
-                            </div>
-                            <div data-src="{{asset "img/picture4.jpg"}}">
-                                <div class="camera-caption fadeIn">
-                                    <p class="title">Nice glance that!</p>
-                                    <p class="description">Or was a close call?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 link-box">
-                  <div class="row">
-                    <div class="col-lg-12 col-md-6 col-sm-6">
-                      <div class="box box1">
-                        <p class="title">club schedule</p>
-                        <p class="description">View all fixtures for<br />{{date format="YYYY"}}<br/><br/></p>
-                        <a href="https://suttonchallengers.play-cricket.com/Matches?tab=Fixture" target="_blank"></a>
-                      </div>
-                    </div>
-                    <div class="col-lg-12 col-md-6 col-sm-6">
-                      <div class="box box2">
-                        <p class="title">Join us today!</p>
-                        <p class="description">And be part of a <br />community working <br />at the grass roots!</p>
-                        <a href="#"></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
         </div>
     </header>
-    <main class="global">
-          {{{body}}}
+    <main>
+      <div class="container">
+        {{{body}}}
+      </div>
     </main>
     <footer>
       <div class="container">
