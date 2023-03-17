@@ -53,8 +53,7 @@ function css(done) {
 
 function font(done) {
     pump([
-        src('assets/font/*'),
-        uglify(),
+        src(['assets/fonts/*']),
         dest('assets/built/'),
         livereload()
     ], handleError(done));
