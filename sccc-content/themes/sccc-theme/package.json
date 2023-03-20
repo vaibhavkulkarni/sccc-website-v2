@@ -1,45 +1,21 @@
 {
-    "name": "ghost-starter-theme",
-    "description": "A starter theme for Ghost theme development",
-    "demo": "https://starter.ghost.io",
-    "version": "2.0.0",
+    "name": "sccc-theme",
+    "description": "Sutton Challengers Ghost CMS Theme",
     "engines": {
         "ghost": ">=5.0.0"
-    },
-    "license": "MIT",
-    "screenshots": {
-        "desktop": "assets/screenshot-desktop.jpg"
     },
     "scripts": {
         "dev": "rollup -c --environment BUILD:development -w",
         "build": "rollup -c --environment BUILD:production",
-        "zip": "npm run build && bestzip $npm_package_name.zip assets/* partials/* members/* *.hbs package.json",
+        "zip": "npm run build && mkdir dist && bestzip dist/$npm_package_name.zip assets/* partials/* members/* *.hbs package.json",
         "test": "gscan .",
         "pretest": "npm run build"
-    },
-    "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org"
-    },
-    "gpm": {
-        "type": "theme",
-        "categories": [
-            "Minimal",
-            "Magazine"
-        ]
     },
     "keywords": [
         "ghost",
         "theme",
         "ghost-theme"
     ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/TryGhost/Starter.git"
-    },
-    "bugs": "https://github.com/TryGhost/Starter/issues",
-    "contributors": "https://github.com/TryGhost/Starter/graphs/contributors",
     "devDependencies": {
         "@babel/core": "^7.21.0",
         "@babel/preset-env": "^7.20.2",

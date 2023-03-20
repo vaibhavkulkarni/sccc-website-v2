@@ -25,7 +25,7 @@ jobs:
           zip -r sccc-content.zip sccc-content -x sccc-content/data/**\* sccc-content/themes/**\* sccc-content/logs/**\*
           cd sccc-content/themes/sccc-theme
           npm install
-          npm run test:ci
+          npm run test
           npm run zip
       - name: Copy artifacts to Server
         uses: appleboy/scp-action@v0.1.2
