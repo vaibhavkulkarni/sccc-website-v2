@@ -273,7 +273,7 @@ nav.tm_navbar .sub-menu > ul li > ul li a:hover {
   display: none !important;
 }
 /*-----content-----*/
-header {
+body > header {
   position: relative;
   margin: 0;
   padding: 17px 0 0 0;
