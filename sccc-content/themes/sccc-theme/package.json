@@ -4,10 +4,16 @@
     "engines": {
         "ghost": ">=5.0.0"
     },
+    "version": "2.0.0",
+    "author": {
+        "name": "SCCC Theme",
+        "email": "admin@suttonchallengers.net",
+        "url": "https://suttonchallengers.org"
+    },
     "scripts": {
         "dev": "rollup -c --environment BUILD:development -w",
         "build": "rollup -c --environment BUILD:production",
-        "zip": "npm run build && mkdir dist && bestzip dist/$npm_package_name.zip assets/* partials/* members/* *.hbs package.json",
+        "zip": "npm run build && mkdir -p dist && bestzip dist/$npm_package_name.zip assets/* partials/* members/* *.hbs package.json",
         "test": "gscan .",
         "pretest": "npm run build"
     },
