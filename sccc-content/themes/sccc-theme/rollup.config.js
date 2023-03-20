@@ -8,6 +8,8 @@ import babel from '@rollup/plugin-babel';
 // Minifies the bundle
 import terser from '@rollup/plugin-terser';
 
+import copy from 'rollup-plugin-copy';
+
 // CSS
 // Enable the PostCSS preprocessor
 import postcss from 'rollup-plugin-postcss';
@@ -17,35 +19,34 @@ import atImport from 'postcss-import';
 import postcssPresetEnv from 'postcss-preset-env';
 
 // Development: Enables a livereload server that watches for changes to CSS, JS, and Handlbars files
-import { resolve } from "path";
+import { resolve } from 'path';
 import livereload from 'rollup-plugin-livereload';
 
 // Rollup configuration
 export default defineConfig({
-    input: 'assets/js/index.js',
-    output: {
-        dir: "assets/built",
-        sourcemap: true,
-        format: 'iife',
-        plugins: [terser()]
-    },
-    plugins: [
-        commonjs(), 
-        nodeResolve(), 
-        babel({ babelHelpers: 'bundled' }),
-        postcss({
-            extract: true,
-            sourceMap: true,
-            plugins: [
-                atImport(),
-                postcssPresetEnv({})
-            ], 
-            minimize: true,
-        }),
-        process.env.BUILD !== "production" && livereload({
-            watch: resolve('.'),
-            extraExts: ['hbs'],
-            exclusions: [resolve('node_modules')]
-        }),
-    ]
-})
+  input: 'assets/js/index.js',
+  output: {
+    dir: 'assets/built',
+    sourcemap: false,
+    format: 'iife',
+    plugins: [terser()],
+  },
+  plugins: [
+    copy({ targets: [{ src: 'assets/js/*.js', dest: 'assets/built' }] }),
+    commonjs(),
+    nodeResolve(),
+    babel({ babelHelpers: 'bundled' }),
+    postcss({
+      extract: true,
+      sourceMap: false,
+      plugins: [atImport(), postcssPresetEnv({})],
+      minimize: true,
+    }),
+    process.env.BUILD !== 'production' &&
+      livereload({
+        watch: resolve('.'),
+        extraExts: ['hbs'],
+        exclusions: [resolve('node_modules')],
+      }),
+  ],
+});

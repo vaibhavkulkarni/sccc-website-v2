@@ -29,7 +29,7 @@ One neat trick is that you can also create custom one-off templates just by addi
 
 # Development
 
-Styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
+Styles are compiled using /PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) installed globally. After that, from the theme's root directory:
 
 ```bash
 # Install
@@ -39,9 +39,9 @@ yarn
 yarn dev
 ```
 
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
+Now you can edit files which will be compiled to `/assets/built/` automatically and will be reloaded in dev env.
 
-The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
+The `zip` task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
 
 ```bash
 yarn zip
