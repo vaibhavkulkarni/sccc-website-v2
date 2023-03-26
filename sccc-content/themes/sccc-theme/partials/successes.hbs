@@ -5,6 +5,15 @@
   <a href="{{url}}">
     {{title}}
   </a>
+  <p class="gh-post-authors">
+    Written by
+    {{#foreach authors}}
+      <a href="{{url}}">
+        {{name}}
+      </a>
+    {{/foreach}}
+  </p>
+  <br />
   <p>
     {{excerpt characters="120"}}
   </p>
