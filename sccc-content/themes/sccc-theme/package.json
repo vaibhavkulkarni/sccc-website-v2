@@ -1,6 +1,6 @@
 {
-    "name": "edition",
-    "description": "A clean, minimal newsletter theme for the Ghost publishing platform",
+    "name": "sccc-theme",
+    "description": "Ghost CMS theme for SCCC",
     "version": "1.0.0",
     "private": true,
     "engines": {
@@ -8,16 +8,15 @@
     },
     "license": "MIT",
     "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org"
+        "name": "Sutton Challengers Cricket Club",
+        "email": "admin@suttonchallengers.net",
+        "url": "https://suttonchallengers.org"
     },
     "keywords": [
         "ghost",
         "theme",
         "ghost-theme"
     ],
-    "docs": "https://edition.ghost.io/about/",
     "config": {
         "posts_per_page": 10,
         "image_sizes": {
@@ -85,16 +84,6 @@
                 "default": true,
                 "group": "homepage"
             },
-            "featured_title": {
-                "type": "text",
-                "default": "Featured articles",
-                "group": "homepage"
-            },
-            "feed_title": {
-                "type": "text",
-                "default": "Latest",
-                "group": "homepage"
-            },
             "feed_layout": {
                 "type": "select",
                 "options": [
@@ -120,7 +109,7 @@
     },
     "scripts": {
         "dev": "gulp",
-        "test": "gscan .",
+        "test": "gscan --verbose .",
         "zip": "gulp zip"
     },
     "devDependencies": {
