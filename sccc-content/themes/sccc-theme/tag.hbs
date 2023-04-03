@@ -1,35 +1,32 @@
 {{!< default}}
 
-<div class="gh-page">
-    <div class="gh-container">
+<main class="site-main">
 
-        {{#tag}}
-        <header class="gh-page-head">
+    {{#tag}}
+    <section class="taxonomy">
 
-            <h1>{{name}}</h1>
+        {{#if feature_image}}
+            <div class="taxonomy-media u-placeholder square">
+                <img class="u-object-fit" src="{{img_url feature_image size="s"}}" alt="{{name}}">
+            </div>
+        {{/if}}
 
-            <p>
-                {{#if description}}
-                    {{description}}
-                {{else}}
-                    A collection of {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
-                {{/if}}
-            </p>
-
-            {{#if feature_image}}
-                <img class="gh-page-image" src="{{feature_image}}" alt="{{name}}" />
+        <header class="single-header gh-canvas">
+            <h1 class="single-title">{{name}}</h1>
+            {{#if description}}
+                <div class="single-excerpt">{{description}}</div>
             {{/if}}
-
         </header>
-        {{/tag}}
 
-        <div class="gh-postfeed">
+    </section>
+    {{/tag}}
+
+    <div class="post-feed gh-feed gh-canvas">
         {{#foreach posts}}
-
-            {{!-- {{> "card"}} partials/card.hbs --}}
-
+            {{> "loop"}}
         {{/foreach}}
-        </div>
-
     </div>
-</div>
+
+    {{pagination}}
+
+</main>

@@ -1,2 +1,54 @@
 {{!< default}}
 
+<div class="gh-outer">
+    <main class="site-main gh-inner">
+        <div class="topic-feed">
+            <section class="topic">
+                <header class="feed-header gh-canvas">
+                    <div class="feed-header-wrapper">
+                        <h2 class="feed-header-title">Achievements</h2>
+                    </div>
+                </header>
+                <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed gh-canvas">
+                    {{#get "posts" filter="primary_tag:Achievements" limit="3" include="tags,authors" as |post|}}
+                        {{#foreach post}}
+                            {{> "loop"}}
+                        {{/foreach}}
+                    {{/get}}
+                    {{#get "tags" filter="name:Achievements" limit="1"}}
+                        {{#foreach tags}}
+                            <a class="topic-more" href="{{url}}">Show more →</a>
+                        {{/foreach}}
+                    {{/get}}
+                </div>
+            </section>
+
+            <section class="topic">
+                <header class="feed-header gh-canvas">
+                    <div class="feed-header-wrapper">
+                        <h2 class="feed-header-title">Recent Highlights</h2>
+                    </div>
+                </header>
+                <div class="post-feed{{#match @custom.feed_layout "!=" "Minimal"}} expanded{{/match}}{{#match @custom.feed_layout "Right thumbnail"}} right-thumbnail{{/match}}{{#match @custom.feed_layout "Text-only"}} text-only{{/match}} gh-feed gh-canvas">
+                    {{#get "posts" filter="primary_tag:Highlights" limit="3" include="tags,authors" as |post|}}
+                        {{#foreach post}}
+                            {{> "loop"}}
+                        {{/foreach}}
+                    {{/get}}
+                    {{#get "tags" filter="name:Highlights" limit="1"}}
+                        {{#foreach tags}}
+                            <a class="topic-more" href="{{url}}">Show more →</a>
+                        {{/foreach}}
+                    {{/get}}
+                </div>
+            </section>
+        </div>
+
+        {{> "sponsors"}}
+    </main>
+</div>
+
+{{#contentFor "body_class"}}{{#if @site.cover_image}} with-full-cover is-head-transparent{{/if}}{{#if @member}} logged-in{{/if}}{{/contentFor}}
+
+
+
