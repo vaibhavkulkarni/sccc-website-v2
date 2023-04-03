@@ -109,7 +109,8 @@
     },
     "scripts": {
         "dev": "gulp",
-        "test": "gscan --verbose .",
+        "build": "gulp build",
+        "test": "npm run build && gscan --verbose .",
         "zip": "gulp zip"
     },
     "devDependencies": {
