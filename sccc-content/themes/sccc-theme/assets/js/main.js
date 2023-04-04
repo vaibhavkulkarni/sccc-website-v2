@@ -6,7 +6,7 @@ var st = 0;
 cover();
 featured();
 carousel();
-pagination(false);
+// pagination(false);
 
 window.addEventListener('scroll', function () {
     'use strict';
