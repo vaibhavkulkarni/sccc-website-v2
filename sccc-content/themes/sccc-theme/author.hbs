@@ -1,46 +1,58 @@
 {{!< default}}
 
-<div class="gh-page">
-    <div class="gh-container">
+<main class="site-main">
 
-        {{#author}}
-        <header class="gh-page-head">
-            {{#if profile_image}}
-                <img class="gh-author-image" src="{{profile_image}}" alt="{{name}}" />
+    {{#author}}
+    <section class="taxonomy gh-canvas">
+
+        {{#if profile_image}}
+            <div class="taxonomy-media u-placeholder square">
+                <img class="u-object-fit" src="{{img_url profile_image size="s"}}" alt="{{name}}">
+            </div>
+        {{/if}}
+
+        <header class="single-header">
+
+            {{#if website}}
+                <h1 class="single-title">
+                    <a href="{{website}}" target="_blank" rel="noopener noreferrer">{{name}}</a>
+                </h1>
+            {{else}}
+                <h1 class="single-title">{{name}}</h1>
             {{/if}}
 
-            <h1>{{name}}</h1>
-            {{#if bio}}
-                <p>{{bio}}</p>
+            {{#if location}}
+                <span class="author-meta">{{location}}</span>
             {{/if}}
 
-            <div class="gh-author-meta">
-                <div class="gh-author-links">
-                    {{#if website}}
-                        <a href="{{website}}" target="_blank" rel="noopener">Website</a>
-                    {{/if}}
-                    {{#if twitter}}
-                        <a href="{{twitter_url}}" target="_blank" rel="noopener">Twitter</a>
-                    {{/if}}
-                    {{#if facebook}}
-                        <a href="{{facebook_url}}" target="_blank" rel="noopener">Facebook</a>
-                    {{/if}}
-                </div>
+            <div class="single-excerpt">{{bio}}</div>
+
+            <div class="share author-social">
+                {{#if facebook}}
+                    <a class="share-link share-link-facebook author-social-item" href="https://www.facebook.com/{{facebook}}" target="_blank" rel="noopener noreferrer">
+                        {{> "icons/facebook"}}
+                        Facebook
+                    </a>
+                {{/if}}
+                {{#if twitter}}
+                    <a class="share-link share-link-twitter author-social-item" href="https://twitter.com/{{twitter}}" target="_blank" rel="noopener noreferrer">
+                        {{> "icons/twitter"}}
+                        Twitter
+                    </a>
+                {{/if}}
             </div>
 
-            {{#if cover_image}}
-                <img class="gh-page-image" src="{{cover_image}}" alt="{{name}}" />
-            {{/if}}
         </header>
-        {{/author}}
 
-        <div class="gh-postfeed">
+    </section>
+    {{/author}}
+
+    <div class="post-feed gh-feed gh-canvas">
         {{#foreach posts}}
-
-            {{!-- {{> "card"}} partials/card.hbs --}}
-
+            {{> "loop"}}
         {{/foreach}}
-        </div>
-
     </div>
-</div>
+
+    {{pagination}}
+
+</main>
