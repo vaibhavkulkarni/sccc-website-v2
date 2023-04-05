@@ -2,7 +2,7 @@ name: SCCC Website deployer
 
 on:
   push:
-    branches: "*"
+    branches: main
   pull_request:
     branches: main
 
