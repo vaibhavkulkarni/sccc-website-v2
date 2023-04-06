@@ -41,11 +41,11 @@
             <div class="feed-visibility feed-visibility-{{visibility}}">
                 {{> "icons/star"}}
             </div>
-            {{#if reading_time}}
+            {{!-- {{#if reading_time}}
                 <div class="feed-length">
                     {{reading_time}}
                 </div>
-            {{/if}}
+            {{/if}} --}}
             {{#if @site.comments_enabled}}
                 {{comment_count autowrap="div" class="feed-comments"}}
             {{/if}}
