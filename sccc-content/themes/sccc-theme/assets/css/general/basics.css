@@ -1,7 +1,7 @@
 :root {
     --brand-color: var(--ghost-accent-color, #ff572f);
     --primary-text-color: #333;
-    --secondary-text-color: #999;
+    --secondary-text-color: #666;
     --white-color: #fff;
     --lighter-gray-color: #f6f6f6;
     --light-gray-color: #e6e6e6;
