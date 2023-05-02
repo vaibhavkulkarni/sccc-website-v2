@@ -1,7 +1,6 @@
-version: '3.9'
+version: "3.9"
 
 services:
-
   ghost:
     image: ghost:5-alpine
     container_name: ghost
@@ -37,3 +36,13 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  contact-svc:
+    image: vaibhz/sccc-contact-service
+    container_name: sccc-contact-service
+    restart: always
+    environment:
+      EMAIL_SERVICE: ${EMAIL_SERVICE}
+      mail__options__secure: true
+      EMAIL_USER: ${EMAIL_USER}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}

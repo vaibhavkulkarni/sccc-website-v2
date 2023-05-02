@@ -1,0 +1,60 @@
+{{!< page}}
+{{#contentFor "form-area"}}
+  <div class="gh-inner">
+    <form
+      class="contact-form"
+      action="https://getform.io/f/9de64cfa-0a4a-4fd2-b385-687e2059cae6"
+      method="POST"
+    >
+      <label for="full-name">
+        Name
+      </label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="First and Last"
+        required
+      />
+      <label for="email-address">
+        Email Address
+      </label>
+      <input
+        type="email"
+        name="_replyto"
+        id="email"
+        placeholder="Your email address"
+        required
+      />
+      <label for="phone-number">
+        Phone Number
+      </label>
+      <input
+        type="phone"
+        name="phone"
+        id="phone"
+        placeholder="Your phone number"
+      />
+      <label for="message">
+        Your Message
+      </label>
+      <textarea
+        rows="5"
+        name="message"
+        id="message"
+        placeholder="Your message"
+        required
+      ></textarea>
+      <div class="checkbox mb-3">
+        <div
+          class="cf-turnstile"
+          data-sitekey="0x4AAAAAAAEYVQGeGZiJ1x3N"
+          data-theme="light"
+        ></div>
+      </div>
+      <input type="submit" value="Submit" />
+      <span id="responsemsg"></span>
+      <span id="serverresponse" style="color: red;"></span>
+    </form>
+  </div>
+{{/contentFor}}
