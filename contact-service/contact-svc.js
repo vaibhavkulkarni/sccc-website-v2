@@ -66,7 +66,7 @@ function sendEmail(data, res) {
         <ul>
             <li>Name: ${data.name}</li>
             <li>Email: ${data.email}</li>
-            <li>Name: ${data.phone}</li>
+            <li>Phone: ${data.phone}</li>
         </ul>
         <h3>Message:</h3>
         <p>${data.message}</p>
