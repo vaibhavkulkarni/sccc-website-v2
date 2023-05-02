@@ -41,8 +41,17 @@ services:
     image: vaibhz/sccc-contact-service
     container_name: sccc-contact-service
     restart: always
+    ports:
+      - 7000:7000
     environment:
       EMAIL_SERVICE: ${EMAIL_SERVICE}
       mail__options__secure: true
       EMAIL_USER: ${EMAIL_USER}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+
+  play-cricket-api:
+    image: vaibhz/sccc-pc-api
+    container_name: sccc-pc-api
+    restart: always
+    ports:
+      - 9090:9090

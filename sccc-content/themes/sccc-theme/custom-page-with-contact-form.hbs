@@ -3,10 +3,11 @@
   <div class="gh-inner">
     <form
       class="contact-form"
-      action="/contact-svc"
+      id="contact-form"
       method="POST"
+      data-format="inline"
     >
-      <label for="full-name">
+      <label for="name">
         Name
       </label>
       <input
@@ -16,7 +17,7 @@
         placeholder="First and Last"
         required
       />
-      <label for="email-address">
+      <label for="email">
         Email Address
       </label>
       <input
@@ -26,7 +27,7 @@
         placeholder="Your email address"
         required
       />
-      <label for="phone-number">
+      <label for="phone">
         Phone Number
       </label>
       <input
