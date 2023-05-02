@@ -7,6 +7,7 @@ let nodemailer = require("nodemailer");
 let smtpTrans = require("nodemailer-smtp-transport");
 let validator = require("email-validator");
 let sanitize = require("sanitize-html");
+let fs = require("fs");
 
 const TRUNSTILE_SECRET_KEY = process.env.TRUNSTILE_SECRET_KEY;
 let smtp = { auth: {}, secure: true, debug: false };
@@ -30,8 +31,8 @@ app.use("/contact-svc/assets", express.static(__dirname + "/assets"));
 
 app.post("/contact-svc", async function (req, res) {
   if (validator.validate(req.body.email)) {
-    let formData = new FormData();
-    formData.append("secret", SECRET_KEY);
+    let formData = new URLSearchParams();
+    formData.append("secret", TRUNSTILE_SECRET_KEY);
     formData.append("response", token);
     formData.append("remoteip", ip);
 
