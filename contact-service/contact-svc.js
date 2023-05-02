@@ -33,7 +33,7 @@ app.post("/contact-svc", async function (req, res) {
   if (validator.validate(req.body.email)) {
     let formData = new URLSearchParams();
     formData.append("secret", TRUNSTILE_SECRET_KEY);
-    formData.append("response", data["cf-turnstile-response"]);
+    formData.append("response", req.body["cf-turnstile-response"]);
 
     const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
     const result = await fetch(url, {
@@ -45,7 +45,7 @@ app.post("/contact-svc", async function (req, res) {
     if (outcome.success) {
       return sendEmail(req.body, res);
     } else {
-      console.error("Bots not allowed!");
+      console.error("Bots not allowed! ", outcome);
     }
   }
   res.status(403).json({ validation: "no email" });
@@ -56,7 +56,7 @@ app.listen(7000, function () {
 });
 
 function sendEmail(data, res) {
-  let email = { from: data.email, to: process.env.EMAIL_USER };
+  let email = { from: process.env.EMAIL_USER, to: process.env.EMAIL_USER };
   email.subject = "Message from suttonchallengers.org";
 
   const output = `
@@ -76,6 +76,7 @@ function sendEmail(data, res) {
   });
   transporter.sendMail(email, function (error, info) {
     if (error) {
+      console.error(error);
       return res.json({ sendEmail: "failed" });
     }
     res.json({ sendEmail: "ok" });

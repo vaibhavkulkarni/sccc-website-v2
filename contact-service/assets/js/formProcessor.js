@@ -27,23 +27,17 @@ var formProcessor = (function () {
   function formAlert(text) {
     document.getElementById("responsemsg").innerHTML = "<br><p><em>" + text + "</em></p>";
   }
-  function responseAlert(text) {
-    document.getElementById("serverresponse").innerHTML = "<br><p><em>" + text + "</em></p>";
-  }
 
-  function sendData(data, url) {
+  function sendData(data) {
     formAlert("One second...");
-    var postURL = url || "https://www.suttonchallengers.org/contact-svc/";
+    var postURL = "https://www.suttonchallengers.org/contact-svc/";
     var http = new XMLHttpRequest();
     http.open("POST", postURL, true);
-    // http.setRequestHeader("Content-Type", "application/json");
+    http.setRequestHeader("Content-Type", "application/json");
     data.source_url = window.location.href;
     http.send(JSON.stringify(data));
     http.onload = function () {
       formAlert("Thank you, your message has been sent!");
-      if (url != undefined) {
-        responseAlert("Only the demo should display the server response: " + http.responseText);
-      }
       document.getElementById("contact-form").reset();
     };
   }
@@ -54,14 +48,15 @@ var formProcessor = (function () {
         name: document.forms["contact-form"]["name"].value,
         email: document.forms["contact-form"]["email"].value,
         message: document.forms["contact-form"]["message"].value,
-        "cf-turnstile-response": document.forms["contact-form"]["cf-turnstile-response"].value,
       };
       validate
         .async(attributes, constraints)
         .then(function (success) {
-          sendData(success, url);
+          success["cf-turnstile-response"] = document.forms["contact-form"]["cf-turnstile-response"].value
+          sendData(success);
         })
         .catch(function (error) {
+          console.log(error);
           formAlert(Object.values(error)[0][0]);
         });
     },
