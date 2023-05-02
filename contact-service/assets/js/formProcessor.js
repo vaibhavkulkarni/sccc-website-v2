@@ -36,7 +36,7 @@ var formProcessor = (function () {
     var postURL = url || "https://www.suttonchallengers.org/contact-svc/";
     var http = new XMLHttpRequest();
     http.open("POST", postURL, true);
-    http.setRequestHeader("Content-Type", "application/json");
+    // http.setRequestHeader("Content-Type", "application/json");
     data.source_url = window.location.href;
     http.send(JSON.stringify(data));
     http.onload = function () {
@@ -49,20 +49,19 @@ var formProcessor = (function () {
   }
 
   return {
-    process: function (url) {
+    process: function () {
       var attributes = {
         name: document.forms["contact-form"]["name"].value,
         email: document.forms["contact-form"]["email"].value,
         message: document.forms["contact-form"]["message"].value,
+        "cf-turnstile-response": document.forms["contact-form"]["cf-turnstile-response"].value,
       };
       validate
         .async(attributes, constraints)
         .then(function (success) {
-          //console.log("Success", success);
           sendData(success, url);
         })
         .catch(function (error) {
-          //console.log("ValidationError", error);
           formAlert(Object.values(error)[0][0]);
         });
     },

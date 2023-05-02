@@ -33,8 +33,7 @@ app.post("/contact-svc", async function (req, res) {
   if (validator.validate(req.body.email)) {
     let formData = new URLSearchParams();
     formData.append("secret", TRUNSTILE_SECRET_KEY);
-    formData.append("response", token);
-    formData.append("remoteip", ip);
+    formData.append("response", data["cf-turnstile-response"]);
 
     const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
     const result = await fetch(url, {
