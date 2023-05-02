@@ -48,6 +48,7 @@ services:
       mail__options__secure: true
       EMAIL_USER: ${EMAIL_USER}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+      TRUNSTILE_SECRET_KEY: ${TRUNSTILE_SECRET_KEY}
 
   play-cricket-api:
     image: vaibhz/sccc-pc-api

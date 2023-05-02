@@ -8,6 +8,7 @@ let smtpTrans = require("nodemailer-smtp-transport");
 let validator = require("email-validator");
 let sanitize = require("sanitize-html");
 
+const TRUNSTILE_SECRET_KEY = process.env.TRUNSTILE_SECRET_KEY;
 let smtp = { auth: {}, secure: true, debug: false };
 smtp.service = process.env.EMAIL_SERVICE;
 smtp.auth.user = process.env.EMAIL_USER;
@@ -27,9 +28,25 @@ app.use(
 
 app.use("/contact-svc/assets", express.static(__dirname + "/assets"));
 
-app.post("/contact-svc", function (req, res) {
-  if (validate(req.body.email)) {
-    return sendEmail(req.body, res);
+app.post("/contact-svc", async function (req, res) {
+  if (validator.validate(req.body.email)) {
+    let formData = new FormData();
+    formData.append("secret", SECRET_KEY);
+    formData.append("response", token);
+    formData.append("remoteip", ip);
+
+    const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+    const result = await fetch(url, {
+      body: formData,
+      method: "POST",
+    });
+
+    const outcome = await result.json();
+    if (outcome.success) {
+      return sendEmail(req.body, res);
+    } else {
+      console.error("Bots not allowed!");
+    }
   }
   res.status(403).json({ validation: "no email" });
 });
@@ -55,7 +72,7 @@ function sendEmail(data, res) {
         <p>${data.message}</p>
     `;
   email.html = sanitize(output, {
-    allowedTags: defaults.allowedTags.concat(["img"]),
+    allowedTags: sanitize.defaults.allowedTags.concat(["img"]),
   });
   transporter.sendMail(email, function (error, info) {
     if (error) {

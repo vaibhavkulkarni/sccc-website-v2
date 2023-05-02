@@ -33,7 +33,7 @@ var formProcessor = (function () {
 
   function sendData(data, url) {
     formAlert("One second...");
-    var postURL = url || "https://www.suttonchallengers.org/contact-svc";
+    var postURL = url || "https://www.suttonchallengers.org/contact-svc/";
     var http = new XMLHttpRequest();
     http.open("POST", postURL, true);
     http.setRequestHeader("Content-Type", "application/json");
