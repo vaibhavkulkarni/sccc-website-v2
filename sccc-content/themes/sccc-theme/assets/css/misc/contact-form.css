@@ -1,7 +1,15 @@
 .contact-form {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 0.2em 4em;
+    align-items: center;
+}
+
+.contact-form label {
+    margin: 5px 10px 5px 0;
+}
+
+.contact-form input {
+    float: left;
+    width: 75%;
 }
 
 .contact-form input,
@@ -14,31 +22,31 @@
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    outline: 1px solid #3eb0ef;
+    outline: 1px solid #0b2c6f;
     outline-offset: -1px;
 }
 
-.contact-form label[for="name"],
-.contact-form label[for="email"],
-.contact-form label[for="phone"] {
-    order: -1;
-}
-
-.contact-form input {
-    order: 0;
-    margin-bottom: 0.6em;
-}
-
-.contact-form label[for="message"],
-.contact-form textarea {
-    grid-column-end: span 3;
-}
-
 .contact-form input[type="submit"] {
-    grid-column-start: 3;
-    justify-self: end;
+    float: right;
     margin-top: 0.6em;
-    background: #3eb0ef;
+    background: #0b2c6f;
     color: white;
     width: auto;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    border-radius: 5px;
+    width: 55%;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        border-radius: 5px;
+        width: 75%;
+    }
 }

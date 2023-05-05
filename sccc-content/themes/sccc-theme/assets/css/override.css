@@ -459,3 +459,35 @@ section {
 section>*+* {
     margin-block-start: 0.5rem;
 }
+
+
+/* Responsive styles */
+@media (max-width: 767px) {
+    #gh-head {
+        height: 75px;
+    }
+
+    .gh-head-logo img {
+        max-height: 70px;
+        padding: 0.25rem;
+    }
+
+    .gh-head-members {
+        flex-direction: row;
+        gap: 16px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .gh-head-members>a {
+        padding: 1rem;
+    }
+
+    .fa-facebook {
+        text-align: center;
+    }
+
+    .gh-head-actions .gh-search {
+        display: none;
+    }
+}

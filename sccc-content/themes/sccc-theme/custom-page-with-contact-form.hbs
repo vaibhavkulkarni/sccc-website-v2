@@ -1,61 +1,68 @@
 {{!< page}}
 {{#contentFor "form-area"}}
-  <div class="gh-inner">
-    <form
-      class="contact-form"
-      id="contact-form"
-      method="POST"
-      data-format="inline"
-    >
-      <label for="name">
-        Name
-      </label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        placeholder="First and Last"
-        required
-      />
-      <label for="email">
-        Email Address
-      </label>
-      <input
-        type="email"
-        name="_replyto"
-        id="email"
-        placeholder="Your email address"
-        required
-      />
-      <label for="phone">
-        Phone Number
-      </label>
-      <input
-        type="phone"
-        name="phone"
-        id="phone"
-        placeholder="Your phone number"
-      />
-      <label for="message">
-        Your Message
-      </label>
-      <textarea
-        rows="5"
-        name="message"
-        id="message"
-        placeholder="Your message"
-        required
-      ></textarea>
-      <div class="checkbox mb-3">
-        <div
-          class="cf-turnstile"
-          data-sitekey="0x4AAAAAAAEYVQGeGZiJ1x3N"
-          data-theme="light"
-        ></div>
-      </div>
-      <input type="submit" value="Submit" onclick="formProcessor.process();return false;"/>
-      <span id="responsemsg"></span>
-      <span id="serverresponse" style="color: red;"></span>
-    </form>
+  <div class="center">
+    <div class="container">
+      <form
+        class="contact-form"
+        id="contact-form"
+        method="POST"
+        data-format="inline"
+      >
+        <label for="name">
+          Name
+        </label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="First and Last"
+          required
+        />
+        <label for="email">
+          Email Address
+        </label>
+        <input
+          type="email"
+          name="_replyto"
+          id="email"
+          placeholder="Your email address"
+          required
+        />
+        <label for="phone">
+          Phone Number
+        </label>
+        <input
+          type="phone"
+          name="phone"
+          id="phone"
+          placeholder="Your phone number"
+        />
+        <label for="message">
+          Your Message
+        </label>
+        <textarea
+          rows="5"
+          name="message"
+          id="message"
+          placeholder="Your message"
+          required
+        ></textarea>
+        <div class="checkbox mb-3">
+          <div
+            class="cf-turnstile"
+            data-sitekey="0x4AAAAAAAEYVQGeGZiJ1x3N"
+            data-theme="light"
+          >
+            <input
+              type="submit"
+              value="Submit"
+              onclick="formProcessor.process();return false;"
+            />
+          </div>
+        </div>
+        <span id="responsemsg"></span>
+        <span id="serverresponse" style="color: red;"></span>
+      </form>
+    </div>
   </div>
 {{/contentFor}}
