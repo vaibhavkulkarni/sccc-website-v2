@@ -14,6 +14,14 @@ var formProcessor = (function () {
       presence: true,
       email: true,
     },
+    subject: {
+      presence: true,
+      length: {
+        minimum: 5,
+        maxumum: 25,
+        message: "must be longer.",
+      },
+    },
     message: {
       presence: true,
       length: {
@@ -47,12 +55,13 @@ var formProcessor = (function () {
       var attributes = {
         name: document.forms["contact-form"]["name"].value,
         email: document.forms["contact-form"]["email"].value,
+        subject: document.forms["contact-form"]["subject"].value,
         message: document.forms["contact-form"]["message"].value,
       };
       validate
         .async(attributes, constraints)
         .then(function (success) {
-          success["cf-turnstile-response"] = document.forms["contact-form"]["cf-turnstile-response"].value
+          success["cf-turnstile-response"] = document.forms["contact-form"]["cf-turnstile-response"].value;
           sendData(success);
         })
         .catch(function (error) {
