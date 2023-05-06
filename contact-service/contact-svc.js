@@ -57,7 +57,7 @@ app.listen(7000, function () {
 
 function sendEmail(data, res) {
   let email = { from: process.env.EMAIL_USER, to: process.env.EMAIL_USER };
-  email.subject = "Contact reuqest: " + data.subject;
+  email.subject = "Contact request: " + data.subject;
 
   const output = `
         <p>Hello,<p>
