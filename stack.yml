@@ -9,6 +9,7 @@ services:
       - 2368:2368
     depends_on:
       - db
+      - contact-svc
     volumes:
       - "$PWD/sccc-content:/var/lib/ghost/content/"
     environment:
