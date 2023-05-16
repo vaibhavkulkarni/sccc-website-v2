@@ -57,3 +57,10 @@ services:
     restart: always
     ports:
       - 9090:9090
+
+  sccc-teams-api:
+    image: vaibhz/sccc-teams-service
+    container_name: sccc-teams-service
+    restart: always
+    ports:
+      - 8000:8000
