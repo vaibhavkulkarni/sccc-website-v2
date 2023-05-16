@@ -67,7 +67,7 @@ services:
     volumes:
       - type: bind
         source: ./sccc-gcp-179141288987.json
-        target: usr/src/app//sccc-gcp-179141288987.json
+        target: /usr/src/app/sccc-gcp-179141288987.json
     environment:
       GOOGLE_APPLICATION_CREDENTIALS: ${GOOGLE_APPLICATION_CREDENTIALS}
       GCLOUD_PROJECT: ${GCLOUD_PROJECT}
