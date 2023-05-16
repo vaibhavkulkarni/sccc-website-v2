@@ -1,5 +1,4 @@
 routes:
-  /all-achievements/: all-achievements
 
 collections:
   /:
