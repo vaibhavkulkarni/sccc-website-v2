@@ -1,23 +1,46 @@
 {{!< default}}
 <main class="site-main">
   <div id="teams" class="gh-outer">
-    <div class="row">
-      <div class="column">
-        <div class="card">
-          <img src="/w3images/team1.jpg" alt="Jane" style="width:100%" />
-          <div class="container">
-            <h2></h2>
-            </h2>
-            <p></p>
-            </p>
-            <p>
-              <button class="button">
-                Read More
-              </button>
-            </p>
+    <template>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <img style="width:100%" />
+            <div class="container">
+              <h2></h2>
+              <p></p>
+              <p>
+                <button class="button">
+                  Read More
+                </button>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </template>
   </div>
+  <script>
+    function showContent() {
+        const xmlhttp = new XMLHttpRequest();
+        var temp = document.getElementsByTagName("template")[0];
+        var clon = temp.content.cloneNode(true);
+        xmlhttp.onload = function() {
+            var members = JSON.parse(this.responseText);
+            members.foreach(member => {
+                var card = clon.querySelector(".row > .column > .card");
+                var h2 = card.getElementsBytagName("h2");
+                h2.value = member.name;
+                var img = card.getElementsBytagName("img");
+                img.src = member.photo;
+                imt.alt = member.name;
+                document.body.appendChild(clon);
+            });
+        }
+        xmlhttp.open("GET", "http://localhost:8000/teams-svc/members", true);
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+        xmlhttp.send();
+    }
+    showContent();
+  </script>
 </main>
