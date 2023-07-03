@@ -1,46 +1,65 @@
 {{!< default}}
 <main class="site-main">
-  <div id="teams" class="gh-outer">
-    <template>
-      <div class="row">
-        <div class="column">
-          <div class="card">
-            <img style="width:100%" />
-            <div class="container">
-              <h2></h2>
-              <p></p>
-              <p>
-                <button class="button">
-                  Read More
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </template>
+  <div id="members" class="gh-outer">
+    <div class="members-row"></div>
   </div>
   <script>
     function showContent() {
-        const xmlhttp = new XMLHttpRequest();
-        var temp = document.getElementsByTagName("template")[0];
-        var clon = temp.content.cloneNode(true);
-        xmlhttp.onload = function() {
-            var members = JSON.parse(this.responseText);
-            members.foreach(member => {
-                var card = clon.querySelector(".row > .column > .card");
-                var h2 = card.getElementsBytagName("h2");
-                h2.value = member.name;
-                var img = card.getElementsBytagName("img");
-                img.src = member.photo;
-                imt.alt = member.name;
-                document.body.appendChild(clon);
-            });
+      const MEMBERS_TPL = item => `
+        <div class="members-column">
+          <div class="members-card">
+            <img src="${item.photo}" style="width:100%">
+            <div class="members-container">
+              <h5>${item.name}</h5>
+              <p class="members-title">${shortDesc(item.description)}</p>
+              <p><button onclick="showModal(${item.name.replace(/\s/g, "")}modal)" class="members-button">Read more</button></p>
+            </div>
+            <div id="${item.name.replace(/\s/g, "")}modal" class="members-modal">
+              <article class="members-modal-content">
+                <h1 class="modal-player-name">${item.name} <span class="members-close">&times;</span> </h1>
+                <img src=${item.photo} class="modal-player-photo">
+                <section class="modal-player-desc">
+                    ${item.description}
+                </section>
+              </article>
+            </div>
+          </div>
+        </div>`;
+      const xmlhttp = new XMLHttpRequest();
+      xmlhttp.onload = function() {
+        let members = JSON.parse(this.responseText);
+        document.querySelector("#members")
+          .innerHTML = members.map(item => {
+              item.photo = "/content/images/members-photos/" +item.name.replace(/\s/g, "");
+              return MEMBERS_TPL(item);
+            }).join('');
         }
-        xmlhttp.open("GET", "http://localhost:8000/teams-svc/members", true);
-        xmlhttp.setRequestHeader("Content-type", "application/json");
-        xmlhttp.send();
+      xmlhttp.open("GET", "https://www.suttonchallengers.org/teams-svc/members", true);
+      xmlhttp.setRequestHeader("Content-type", "application/json");
+      xmlhttp.send();
     }
+    
+    function shortDesc(desc) {
+      return desc.substring(0,25) + "...";
+    }
+    
     showContent();
+    
+    function showModal(modal) {
+      var span = modal.getElementsByClassName("members-close")[0];
+      modal.style.display = "block";
+    
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+    
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
+    }
   </script>
 </main>
