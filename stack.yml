@@ -57,6 +57,10 @@ services:
     restart: always
     ports:
       - 9090:9090
+    volumes:
+      - type: bind
+        source: ./clubs-config.toml
+        target: /usr/local/bin/clubs-config.toml
 
   sccc-teams-api:
     image: vaibhz/sccc-teams-service
