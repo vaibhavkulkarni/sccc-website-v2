@@ -14,6 +14,7 @@ var formProcessor = (function () {
       presence: true,
       email: true,
     },
+    phone: {},
     subject: {
       presence: true,
       length: {
@@ -33,7 +34,8 @@ var formProcessor = (function () {
   };
 
   function formAlert(text) {
-    document.getElementById("responsemsg").innerHTML = "<br><p><em>" + text + "</em></p>";
+    document.getElementById("responsemsg").innerHTML =
+      "<br><p><em>" + text + "</em></p>";
   }
 
   function sendData(data) {
@@ -62,7 +64,8 @@ var formProcessor = (function () {
       validate
         .async(attributes, constraints)
         .then(function (success) {
-          success["cf-turnstile-response"] = document.forms["contact-form"]["cf-turnstile-response"].value;
+          success["cf-turnstile-response"] =
+            document.forms["contact-form"]["cf-turnstile-response"].value;
           sendData(success);
         })
         .catch(function (error) {
