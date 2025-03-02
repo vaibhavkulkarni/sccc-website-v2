@@ -55,6 +55,7 @@ var formProcessor = (function () {
       var attributes = {
         name: document.forms["contact-form"]["name"].value,
         email: document.forms["contact-form"]["email"].value,
+        phone: document.forms["contact-form"]["phone"].value,
         subject: document.forms["contact-form"]["subject"].value,
         message: document.forms["contact-form"]["message"].value,
       };
