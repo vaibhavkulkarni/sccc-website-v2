@@ -1,18 +1,21 @@
-const {series, parallel, watch, src, dest} = require('gulp');
-const pump = require('pump');
+import {readFileSync} from 'node:fs';
+import gulp from 'gulp';
+import pump from 'pump';
 
 // gulp plugins and utils
-const livereload = require('gulp-livereload');
-const postcss = require('gulp-postcss');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const beeper = require('beeper');
-const zip = require('gulp-zip');
+import livereload from 'gulp-livereload';
+import postcss from 'gulp-postcss';
+import concat from 'gulp-concat';
+import uglify from 'gulp-uglify';
+import beeper from 'beeper';
+import zip from 'gulp-zip';
 
 // postcss plugins
-const easyimport = require('postcss-easy-import');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
+import easyimport from 'postcss-easy-import';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+
+const {series, parallel, watch, src, dest} = gulp;
 
 function serve(done) {
     livereload.listen();
@@ -64,15 +67,16 @@ function js(done) {
 }
 
 function zipper(done) {
-    const filename = require('./package.json').name + '.zip';
+    const filename = JSON.parse(readFileSync('./package.json', 'utf8')).name + '.zip';
 
     pump([
+        // encoding: false stops gulp 5 from corrupting binary files (images, fonts)
         src([
             '**',
             '!node_modules', '!node_modules/**',
             '!dist', '!dist/**',
             '!yarn-error.log'
-        ]),
+        ], {encoding: false}),
         zip(filename),
         dest('dist/')
     ], handleError(done));
@@ -84,6 +88,7 @@ const jsWatcher = () => watch('assets/js/**/*.js', js);
 const watcher = parallel(hbsWatcher, cssWatcher, jsWatcher);
 const build = series(css, js);
 
-exports.build = build;
-exports.zip = series(build, zipper);
-exports.default = series(build, serve, watcher);
+const zipTask = series(build, zipper);
+
+export {build, zipTask as zip};
+export default series(build, serve, watcher);

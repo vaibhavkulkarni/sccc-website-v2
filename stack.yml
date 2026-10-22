@@ -1,17 +1,19 @@
-version: "3.9"
+name: sccc-website
 
 services:
   ghost:
-    image: ghost:5.93.0-alpine
+    image: ghost:6.72-alpine
     container_name: ghost
     restart: always
     ports:
-      - 2368:2368
+      - "2368:2368"
     depends_on:
-      - db
-      - contact-svc
+      db:
+        condition: service_healthy
+      contact-svc:
+        condition: service_started
     volumes:
-      - "$PWD/sccc-content:/var/lib/ghost/content/"
+      - ./sccc-content:/var/lib/ghost/content
     environment:
       url: https://www.suttonchallengers.org
       database__client: mysql
@@ -21,32 +23,38 @@ services:
       database__connection__database: ${MYSQL_DATABASE}
       mail__transport: SMTP
       mail__options__service: ${EMAIL_SERVICE}
-      mail__options__secure: true
+      mail__options__secure: "true"
       mail__options__auth__user: ${EMAIL_USER}
       mail__options__auth__pass: ${EMAIL_PASSWORD}
       mail__from: ${EMAIL_FROM}
 
   db:
-    image: mysql:8.0
+    image: mysql:9.7
     container_name: db
     restart: always
     volumes:
-      - "$PWD/sccc-mysql-data:/var/lib/mysql"
+      - ./sccc-mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
 
   contact-svc:
     image: vaibhz/sccc-contact-service
     container_name: sccc-contact-service
     restart: always
     ports:
-      - 7000:7000
+      - "7000:7000"
     environment:
       EMAIL_SERVICE: ${EMAIL_SERVICE}
-      mail__options__secure: true
+      mail__options__secure: "true"
       EMAIL_USER: ${EMAIL_USER}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
       TRUNSTILE_SECRET_KEY: ${TRUNSTILE_SECRET_KEY}
@@ -56,7 +64,7 @@ services:
     container_name: sccc-pc-api
     restart: always
     ports:
-      - 9090:9090
+      - "9090:9090"
     volumes:
       - type: bind
         source: ./clubs-config.toml
@@ -67,13 +75,13 @@ services:
     container_name: sccc-teams-service
     restart: always
     ports:
-      - 8000:8000
+      - "8000:8000"
     volumes:
       - type: bind
         source: ./sccc-gcp-179141288987.json
         target: /usr/src/app/sccc-gcp-179141288987.json
-      - "$PWD/sccc-content/images/members-photos:/usr/src/app/members-photos"
+      - ./sccc-content/images/members-photos:/usr/src/app/members-photos
     environment:
       GOOGLE_APPLICATION_CREDENTIALS: ${GOOGLE_APPLICATION_CREDENTIALS}
       GCLOUD_PROJECT: ${GCLOUD_PROJECT}
-      ASSET_DIR: ${ASSET_DIR}
+      ASSET_DIR: ${ASSET_DIR:-/usr/src/app}
