@@ -1,4 +1,6 @@
-import {readFileSync} from 'node:fs';
+import {readFileSync, globSync} from 'node:fs';
+import path from 'node:path';
+import {Transform} from 'node:stream';
 import gulp from 'gulp';
 import pump from 'pump';
 
@@ -31,6 +33,27 @@ function handleError(done) {
     };
 };
 
+// gulp 5 doesn't keep files in the order they were listed, which breaks
+// concatenation (e.g. main.js calling reframe() before it is defined)
+function inOrder(files) {
+    const order = files.map(file => path.resolve(file));
+    const buffered = [];
+
+    return new Transform({
+        objectMode: true,
+        transform(file, encoding, callback) {
+            buffered.push(file);
+            callback();
+        },
+        flush(callback) {
+            buffered
+                .sort((a, b) => order.indexOf(a.path) - order.indexOf(b.path))
+                .forEach(file => this.push(file));
+            callback();
+        }
+    });
+}
+
 function hbs(done) {
     pump([
         src(['*.hbs', 'partials/**/*.hbs']),
@@ -52,13 +75,16 @@ function css(done) {
 }
 
 function js(done) {
+    const files = [
+        'node_modules/@tryghost/shared-theme-assets/assets/js/v1/lib/**/*.js',
+        'node_modules/@tryghost/shared-theme-assets/assets/js/v1/main.js',
+        'assets/js/lib/*.js',
+        'assets/js/main.js'
+    ].flatMap(pattern => globSync(pattern).sort());
+
     pump([
-        src([
-            'node_modules/@tryghost/shared-theme-assets/assets/js/v1/lib/**/*.js',
-            'node_modules/@tryghost/shared-theme-assets/assets/js/v1/main.js',
-            'assets/js/lib/*.js',
-            'assets/js/main.js'
-        ], {sourcemaps: true}),
+        src(files, {sourcemaps: true}),
+        inOrder(files),
         concat('main.min.js'),
         uglify(),
         dest('assets/built/', {sourcemaps: '.'}),
